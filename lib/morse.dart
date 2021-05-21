@@ -1,5 +1,5 @@
 class Morse {
-  Map morseMap = {
+  static Map morseMap = {
     'A': ".-",
     'B': "-...",
     'C': "-.-.",
@@ -36,11 +36,12 @@ class Morse {
     '7': "--...",
     '8': "---..",
     '9': "----.",
-    '.': ".-.-.-"
+    '.': ".-.-.-",
+    ' ': " "
   };
 
   // ignore: missing_return
-  String getMorse(String s) {
+  static String getMorse(String s) {
     if (s.length == 1)
       return morseMap[s];
     else
@@ -48,7 +49,7 @@ class Morse {
   }
 
   // ignore: missing_return
-  String getAlpha(String s) {
+  static String getAlpha(String s) {
     if (s.length > 0 && s.length <= 6) {
       morseMap.forEach((k, v) {
         if (s == v) return k;

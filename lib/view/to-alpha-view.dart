@@ -1,25 +1,17 @@
 import 'package:MoorseCode/control/morse-control.dart';
-import 'package:MoorseCode/control/view-control.dart';
 import 'package:MoorseCode/widgets/MyScaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class ToMorseView extends StatefulWidget {
+class ToAlphaView extends StatefulWidget {
   @override
-  _ToMorseViewState createState() => _ToMorseViewState();
+  _ToAlphaViewState createState() => _ToAlphaViewState();
 }
 
-class _ToMorseViewState extends State<ToMorseView> {
-  TextEditingController _alphaController;
+class _ToAlphaViewState extends State<ToAlphaView> {
+  TextEditingController _morseController;
   final morseControl = new MorseControll();
-  String textMorseResult = "";
-  final controller = Get.put(Controller());
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  String textAlphaResult = "";
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +26,10 @@ class _ToMorseViewState extends State<ToMorseView> {
               SizedBox(
                 height: 60.0,
               ),
-              Text("Converter para código morse"),
+              Text("Converter para alpha"),
               Container(
                 child: Text(
-                  textMorseResult,
+                  textAlphaResult,
                   style: TextStyle(fontSize: 22.0, color: Colors.blueAccent),
                 ),
               ),
@@ -45,11 +37,11 @@ class _ToMorseViewState extends State<ToMorseView> {
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: TextField(
-                    decoration: InputDecoration(labelText: "Alpha"),
-                    controller: _alphaController,
-                    onChanged: (alpha) {
+                    decoration: InputDecoration(labelText: "Código morse"),
+                    controller: _morseController,
+                    onChanged: (morse) {
                       setState(() {
-                        textMorseResult = morseControl.toMorse(alpha);
+                        textAlphaResult = morseControl.toAlpha(morse);
                       });
                     },
                   ),
@@ -65,9 +57,9 @@ class _ToMorseViewState extends State<ToMorseView> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/toalpha');
+                        Navigator.pop(context, '/tomorse');
                       },
-                      child: Text("Converter para Alpha."),
+                      child: Text("Converter para morse"),
                     )
                   ],
                 ),
